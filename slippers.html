@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>潮流居家與加厚防水拖鞋系列 | AuraStep 極光步履</title>
+  <meta name="description" content="探索 AuraStep 輕量防水加厚室內拖鞋、高支撐軟木外穿拖鞋與禦寒記憶棉居家拖。採用符合人體工學足槽設計，防滑耐磨靜音，給雙腳最舒適的釋壓包覆。">
+  <meta name="keywords" content="加厚拖鞋, 室內拖鞋, 軟木拖鞋, 保暖拖鞋, 防滑防水拖鞋">
+  
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Dynamic Header Container -->
+  <header id="global-header"></header>
+
+  <main>
+    <!-- Category Page Hero -->
+    <section class="about-hero" style="padding: 60px 0 40px 0; background: linear-gradient(180deg, rgba(124, 58, 237, 0.04) 0%, rgba(0,0,0,0) 100%);">
+      <div class="container animate-on-scroll">
+        <span class="section-tag" id="cat-banner-tag">Lounge Series</span>
+        <h1 class="about-title" id="cat-page-title" style="font-size: 2.8rem;">精緻拖鞋系列</h1>
+        <p class="about-desc" style="max-width: 600px;">將頂級舒適感帶入居家生活。一體成型加厚高彈發泡、符合人體工學足床、靜音防滑底層，全方位鬆弛腳部肌肉。</p>
+      </div>
+    </section>
+
+    <!-- Product Grid Section -->
+    <section class="product-grid-section">
+      <div class="container">
+        <div class="grid grid-3" id="slippers-products-container">
+          <!-- Dynamically Loaded Products -->
+          <div style="grid-column: 1/-1; text-align: center; padding: 40px 0;">
+            <div class="loader"></div>
+            <p style="margin-top: 12px; color: var(--text-muted);">正在為您加載舒適拖鞋款...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Dynamic Footer Container -->
+  <footer id="global-footer"></footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("slippers-products-container");
+      if (container && typeof productsData !== "undefined") {
+        // Filter slippers category products
+        const products = productsData.filter(p => p.category === "slippers");
+        
+        if (products.length === 0) {
+          container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">目前無此分類產品</p>`;
+          return;
+        }
+
+        container.innerHTML = products.map(product => `
+          <article class="product-card animate-on-scroll">
+            <span class="card-tag">極致釋壓</span>
+            <a href="product.html?id=${product.id}" class="card-img-wrapper">
+              <img src="${product.image}" alt="${product.name}" class="card-img">
+            </a>
+            <div class="card-info">
+              <span class="card-cat">${product.categoryName}</span>
+              <a href="product.html?id=${product.id}">
+                <h3 class="card-title">${product.name}</h3>
+              </a>
+              <div class="card-bottom">
+                <div class="card-price"><span>NT$</span>${product.price.toLocaleString()}</div>
+                <button class="card-btn" id="btn-add-${product.id}" aria-label="將 ${product.name} 加入購物袋" onclick="addProductToCart('${product.id}')">
+                  <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="20" width="20">
+                    <path d="M12 5v14M5 12h14"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        `).join("");
+
+        // Trigger animations for newly added elements
+        if (typeof initScrollAnimations === "function") {
+          initScrollAnimations();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

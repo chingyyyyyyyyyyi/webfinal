@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>安全避震與透氣防撞童鞋系列 | AuraStep 極光步履</title>
+  <meta name="description" content="專為兒童健康成長設計！選購 AuraStep 安全避震童鞋：趣味恐龍閃光發光鞋、高透氣雙網防滑慢跑童鞋與防潑水機能探險童鞋。呵護足底、防止撞擊打滑。">
+  <meta name="keywords" content="發光童鞋, 兒童慢跑鞋, 魔鬼氈童鞋, 防滑童鞋, 護足學步鞋">
+  
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Dynamic Header Container -->
+  <header id="global-header"></header>
+
+  <main>
+    <!-- Category Page Hero -->
+    <section class="about-hero" style="padding: 60px 0 40px 0; background: linear-gradient(180deg, rgba(124, 58, 237, 0.04) 0%, rgba(0,0,0,0) 100%);">
+      <div class="container animate-on-scroll">
+        <span class="section-tag" id="cat-banner-tag">Junior Explorer</span>
+        <h1 class="about-title" id="cat-page-title" style="font-size: 2.8rem;">安全舒適童鞋系列</h1>
+        <p class="about-desc" style="max-width: 600px;">陪伴孩子探索世界的每一步。針對幼童足骨發育，設計 1/3 易彎折鞋底、扇形寬敞鞋頭與防碰撞護片，讓安全與趣味同行。</p>
+      </div>
+    </section>
+
+    <!-- Product Grid Section -->
+    <section class="product-grid-section">
+      <div class="container">
+        <div class="grid grid-3" id="kids-products-container">
+          <!-- Dynamically Loaded Products -->
+          <div style="grid-column: 1/-1; text-align: center; padding: 40px 0;">
+            <div class="loader"></div>
+            <p style="margin-top: 12px; color: var(--text-muted);">正在為您加載安全童鞋款...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Dynamic Footer Container -->
+  <footer id="global-footer"></footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("kids-products-container");
+      if (container && typeof productsData !== "undefined") {
+        // Filter kids category products
+        const products = productsData.filter(p => p.category === "kids");
+        
+        if (products.length === 0) {
+          container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">目前無此分類產品</p>`;
+          return;
+        }
+
+        container.innerHTML = products.map(product => `
+          <article class="product-card animate-on-scroll">
+            <span class="card-tag">護足守護</span>
+            <a href="product.html?id=${product.id}" class="card-img-wrapper">
+              <img src="${product.image}" alt="${product.name}" class="card-img">
+            </a>
+            <div class="card-info">
+              <span class="card-cat">${product.categoryName}</span>
+              <a href="product.html?id=${product.id}">
+                <h3 class="card-title">${product.name}</h3>
+              </a>
+              <div class="card-bottom">
+                <div class="card-price"><span>NT$</span>${product.price.toLocaleString()}</div>
+                <button class="card-btn" id="btn-add-${product.id}" aria-label="將 ${product.name} 加入購物袋" onclick="addProductToCart('${product.id}')">
+                  <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="20" width="20">
+                    <path d="M12 5v14M5 12h14"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        `).join("");
+
+        // Trigger animations for newly added elements
+        if (typeof initScrollAnimations === "function") {
+          initScrollAnimations();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

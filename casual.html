@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日常時尚與都會休閒鞋系列 | AuraStep 極光步履</title>
+  <meta name="description" content="選購 AuraStep 都會日常休閒鞋。精選頭層牛皮英倫皮鞋、復古有機棉帆布板鞋與高透氣防滑懶人鞋。時尚簡約剪裁融合減震底科技，完美契合您的每日穿搭。">
+  <meta name="keywords" content="男士休閒鞋, 帆布鞋, 懶人鞋, 皮革板鞋, AuraStep 休閒鞋">
+  
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Dynamic Header Container -->
+  <header id="global-header"></header>
+
+  <main>
+    <!-- Category Page Hero -->
+    <section class="about-hero" style="padding: 60px 0 40px 0; background: linear-gradient(180deg, rgba(37, 99, 235, 0.04) 0%, rgba(0,0,0,0) 100%);">
+      <div class="container animate-on-scroll">
+        <span class="section-tag" id="cat-banner-tag">Lifestyle Series</span>
+        <h1 class="about-title" id="cat-page-title" style="font-size: 2.8rem;">都會休閒鞋系列</h1>
+        <p class="about-desc" style="max-width: 600px;">將經典優雅的視覺比例與全天候釋壓鞋底相結合。不論是商務辦公、週末聚會或長途旅行，皆能穿著得體、步履輕盈。</p>
+      </div>
+    </section>
+
+    <!-- Product Grid Section -->
+    <section class="product-grid-section">
+      <div class="container">
+        <div class="grid grid-3" id="casual-products-container">
+          <!-- Dynamically Loaded Products -->
+          <div style="grid-column: 1/-1; text-align: center; padding: 40px 0;">
+            <div class="loader"></div>
+            <p style="margin-top: 12px; color: var(--text-muted);">正在為您加載優質休閒鞋款...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Dynamic Footer Container -->
+  <footer id="global-footer"></footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("casual-products-container");
+      if (container && typeof productsData !== "undefined") {
+        // Filter casual category products
+        const products = productsData.filter(p => p.category === "casual");
+        
+        if (products.length === 0) {
+          container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">目前無此分類產品</p>`;
+          return;
+        }
+
+        container.innerHTML = products.map(product => `
+          <article class="product-card animate-on-scroll">
+            <span class="card-tag">日常必備</span>
+            <a href="product.html?id=${product.id}" class="card-img-wrapper">
+              <img src="${product.image}" alt="${product.name}" class="card-img">
+            </a>
+            <div class="card-info">
+              <span class="card-cat">${product.categoryName}</span>
+              <a href="product.html?id=${product.id}">
+                <h3 class="card-title">${product.name}</h3>
+              </a>
+              <div class="card-bottom">
+                <div class="card-price"><span>NT$</span>${product.price.toLocaleString()}</div>
+                <button class="card-btn" id="btn-add-${product.id}" aria-label="將 ${product.name} 加入購物袋" onclick="addProductToCart('${product.id}')">
+                  <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="20" width="20">
+                    <path d="M12 5v14M5 12h14"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        `).join("");
+
+        // Trigger animations for newly added elements
+        if (typeof initScrollAnimations === "function") {
+          initScrollAnimations();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

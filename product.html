@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>產品瀏覽 | AuraStep 極光步履</title>
+  <meta name="description" content="瀏覽 AuraStep 頂級機能科技鞋履的詳細資訊。包含材質規格、產品特色及尺寸對照。立即在線上探索您的完美鞋款。">
+  <meta name="keywords" content="鞋子規格, 鞋子尺寸, 產品細節, 避震科技, 線上買鞋">
+  
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Dynamic Header Container -->
+  <header id="global-header"></header>
+
+  <main>
+    <section class="detail-section">
+      <div class="container" id="product-detail-container">
+        <!-- The content here will be injected dynamically via JavaScript -->
+        <div style="text-align: center; padding: 100px 0;">
+          <div class="loader"></div>
+          <p style="margin-top: 16px; color: var(--text-muted);">正在為您尋找極致步伐的奧秘...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Dynamic Footer Container -->
+  <footer id="global-footer"></footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      renderProductDetail();
+    });
+
+    function renderProductDetail() {
+      const container = document.getElementById("product-detail-container");
+      if (!container) return;
+
+      // Parse Product ID from URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get("id");
+
+      if (typeof productsData === "undefined") {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 40px 0;">
+            <h2 style="font-size: 2rem; margin-bottom: 16px;">資料庫未正常載入</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 24px;">請確認 products-data.js 檔案存在且載入正常。</p>
+            <a href="index.html" class="btn btn-primary">返回首頁</a>
+          </div>
+        `;
+        return;
+      }
+
+      // Find product
+      const product = productsData.find(p => p.id === productId);
+
+      if (!product) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 80px 0; max-width: 600px; margin: 0 auto;" class="animate-on-scroll">
+            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="64" width="64" style="color: var(--text-muted); margin-bottom: 24px;">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <h2 style="font-size: 2.2rem; margin-bottom: 16px; font-weight: 800;">很抱歉，此商品可能已經下架</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 32px; font-size: 1.1rem;">我們找不到您所要求的鞋款細節。歡迎前往我們的其他系列挑選更合適的步伐伴侶。</p>
+            <a href="index.html" class="btn btn-primary">瀏覽所有推薦款式</a>
+          </div>
+        `;
+        return;
+      }
+
+      // Dynamic SEO Meta Update
+      document.title = `${product.name} | AuraStep 極光步履`;
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", product.description);
+      }
+
+      // Define appropriate sizes based on category
+      const isKids = product.category === "kids";
+      const sizes = isKids 
+        ? ["15 cm", "16 cm", "17 cm", "18 cm", "19 cm", "20 cm", "21 cm"]
+        : ["US 7", "US 8", "US 9", "US 10", "US 11", "US 12"];
+
+      // Setup default active size selection
+      let selectedSize = sizes[2] || sizes[0]; // Default US 9 or 17cm
+
+      // Render product grid container
+      container.innerHTML = `
+        <div class="grid grid-2" style="gap: 48px; align-items: start;">
+          
+          <!-- Left: Images Section -->
+          <div class="product-gallery animate-on-scroll">
+            <div class="main-image-wrapper" id="main-image-wrapper">
+              <img src="${product.image}" alt="${product.name}" id="main-detail-image">
+            </div>
+            <div class="thumb-images">
+              <div class="thumb-wrapper active" onclick="changeDetailImage('${product.image}', this)">
+                <img src="${product.image}" alt="${product.name} 角度 1">
+              </div>
+              <div class="thumb-wrapper" onclick="changeDetailImage('${product.image}', this)">
+                <img src="${product.image}" alt="${product.name} 角度 2" style="transform: scaleX(-1);">
+              </div>
+              <div class="thumb-wrapper" onclick="changeDetailImage('${product.image}', this)">
+                <img src="${product.image}" alt="${product.name} 角度 3" style="transform: rotate(15deg);">
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Details Section -->
+          <div class="product-info-panel animate-on-scroll">
+            <div class="product-meta">
+              <!-- Breadcrumbs -->
+              <nav style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">
+                <a href="index.html">首頁</a> &gt; 
+                <a href="${product.category}.html">${product.categoryName}</a> &gt; 
+                <span style="color: var(--text-primary); font-weight: 500;">${product.name}</span>
+              </nav>
+              <h1 style="font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px;">${product.name}</h1>
+              
+              <!-- Stars Rating -->
+              <div style="display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #fbbf24;">
+                <div style="display: flex;">
+                  ${Array(5).fill('<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="16" width="16"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>').join("")}
+                </div>
+                <span style="color: var(--text-secondary); font-weight: 600;">4.9</span>
+                <span style="color: var(--text-muted);">(128 條真實評價)</span>
+              </div>
+            </div>
+
+            <!-- Price -->
+            <div class="product-price"><span>NT$</span>${product.price.toLocaleString()}</div>
+
+            <!-- Description -->
+            <p style="color: var(--text-secondary); font-size: 1.05rem;">${product.description}</p>
+
+            <!-- Size Selector -->
+            <div>
+              <div class="size-selector-title">選擇您的尺碼</div>
+              <div class="size-grid" id="size-selector-grid">
+                ${sizes.map(size => `
+                  <button class="size-btn ${size === selectedSize ? 'active' : ''}" onclick="selectProductSize('${size}', this)">${size}</button>
+                `).join("")}
+              </div>
+            </div>
+
+            <!-- Bullet Features -->
+            <div>
+              <div class="size-selector-title" style="margin-bottom: 12px;">核心科技與特色</div>
+              <ul class="detail-features">
+                ${product.features.map(f => `<li>${f}</li>`).join("")}
+              </ul>
+            </div>
+
+            <!-- Spec Table -->
+            <div>
+              <div class="size-selector-title" style="margin-bottom: 8px;">產品規格</div>
+              <table class="detail-specs-table">
+                ${Object.entries(product.specs).map(([key, val]) => `
+                  <tr>
+                    <td>${key}</td>
+                    <td>${val}</td>
+                  </tr>
+                `).join("")}
+              </table>
+            </div>
+
+            <!-- Add to Bag Buttons -->
+            <div class="purchase-actions">
+              <button class="btn btn-primary" id="add-to-bag-cta" onclick="handleAddToBag('${product.id}')">
+                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="20" width="20">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                加入購物袋
+              </button>
+              <button class="btn btn-secondary" id="buy-now-cta" onclick="handleBuyNow('${product.id}')">立即購買</button>
+            </div>
+
+          </div>
+
+        </div>
+      `;
+
+      // Trigger animation load
+      if (typeof initScrollAnimations === "function") {
+        initScrollAnimations();
+      }
+
+      // Store size locally in this page session closure
+      window.currentSelectedSize = selectedSize;
+    }
+
+    // Interactive image switcher
+    window.changeDetailImage = function(src, element) {
+      const img = document.getElementById("main-detail-image");
+      if (img) img.src = src;
+
+      // Update active thumbnail border
+      const wrappers = document.querySelectorAll(".thumb-wrapper");
+      wrappers.forEach(w => w.classList.remove("active"));
+      element.classList.add("active");
+    };
+
+    // Size selection handler
+    window.selectProductSize = function(size, element) {
+      window.currentSelectedSize = size;
+      
+      const buttons = document.querySelectorAll("#size-selector-grid .size-btn");
+      buttons.forEach(b => b.classList.remove("active"));
+      element.classList.add("active");
+    };
+
+    // Action execution helpers
+    window.handleAddToBag = function(productId) {
+      const size = window.currentSelectedSize || "US 9";
+      if (typeof addProductToCart === "function") {
+        addProductToCart(productId, size);
+      } else {
+        console.error("Cart system is not loaded.");
+      }
+    };
+
+    window.handleBuyNow = function(productId) {
+      const size = window.currentSelectedSize || "US 9";
+      if (typeof addProductToCart === "function") {
+        addProductToCart(productId, size);
+        // Open Cart Drawer
+        const drawer = document.getElementById("cart-drawer");
+        const backdrop = document.getElementById("cart-backdrop");
+        if (drawer && backdrop) {
+          drawer.classList.add("open");
+          backdrop.classList.add("open");
+        }
+      }
+    };
+  </script>
+</body>
+</html>

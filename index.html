@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraStep 極光步履 | 頂級科技潮流鞋履品牌</title>
+  <meta name="description" content="AuraStep 極光步履為您打造融合尖端科技與極致美學的精緻鞋履。包含高機能運動鞋、都會休閒鞋、潮流涼拖鞋與兒童安全防撞鞋。立即探索 AuraStep，踏出您的自信步伐。">
+  <meta name="keywords" content="鞋子品牌, 運動鞋, 休閒鞋, 拖鞋, 涼鞋, 童鞋, AuraStep, 科技跑鞋">
+  
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Dynamic Header Container -->
+  <header id="global-header"></header>
+
+  <main>
+    <!-- Hero Banner Section -->
+    <section class="hero" id="home-hero">
+      <div class="container hero-grid">
+        <div class="hero-content animate-on-scroll">
+          <div class="hero-tag" id="hero-tag-new">2026 全新極光系列</div>
+          <h1 class="hero-title" id="main-hero-title">踏上極光之旅<br>解放<span>雙足自由</span></h1>
+          <p class="hero-desc">AuraStep 極光步履結合前沿航太級緩震科技與高級工藝細節，打破機能與時尚的界線。為追求極致步伐的您量身打造。</p>
+          <div class="hero-btns">
+            <a href="sports.html" class="btn btn-primary" id="hero-cta-shop">立即探索</a>
+            <a href="about.html" class="btn btn-secondary" id="hero-cta-about">關於品牌</a>
+          </div>
+        </div>
+        <div class="hero-visual animate-on-scroll">
+          <div class="hero-circle-bg"></div>
+          <img src="assets/images/sports_1.png" alt="Aura Runner X1" class="hero-image" id="hero-featured-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- Brand Stats Section -->
+    <section class="stats" id="brand-stats">
+      <div class="container stats-grid">
+        <div class="stat-item animate-on-scroll">
+          <div class="stat-num" id="stat-sales">99K+</div>
+          <div class="stat-label">全球滿意顧客</div>
+        </div>
+        <div class="stat-item animate-on-scroll">
+          <div class="stat-num" id="stat-patents">12+</div>
+          <div class="stat-label">專利緩震技術</div>
+        </div>
+        <div class="stat-item animate-on-scroll">
+          <div class="stat-num" id="stat-stores">50+</div>
+          <div class="stat-label">品牌概念店</div>
+        </div>
+        <div class="stat-item animate-on-scroll">
+          <div class="stat-num" id="stat-sustainability">100%</div>
+          <div class="stat-label">環保再生包裝</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Category Previews -->
+    <section class="category-filter-section" id="featured-categories">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <div class="section-info">
+            <span class="section-tag">Explore Series</span>
+            <h2 class="section-title">熱門鞋款分類</h2>
+          </div>
+        </div>
+        <div class="category-capsules animate-on-scroll" id="home-category-list">
+          <a href="sports.html" class="capsule active">運動鞋系列</a>
+          <a href="casual.html" class="capsule">休閒鞋系列</a>
+          <a href="slippers.html" class="capsule">潮流室內拖</a>
+          <a href="sandals.html" class="capsule">機能沙灘涼鞋</a>
+          <a href="kids.html" class="capsule">安全避震童鞋</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products Grid -->
+    <section class="product-grid-section" id="home-featured-products">
+      <div class="container">
+        <div class="grid grid-4" id="featured-products-container">
+          <!-- Rendered dynamically by script below -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Banner Section -->
+    <section class="about-hero" style="background: linear-gradient(0deg, rgba(37,99,235,0.06) 0%, rgba(124,58,237,0.06) 100%); margin: 80px 0;">
+      <div class="container animate-on-scroll" style="max-width: 800px; padding: 60px 24px;">
+        <span class="section-tag" style="margin-bottom: 16px; display: inline-block;">Premium Experience</span>
+        <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 20px;">感受前所未有的舒適感</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 32px; font-size: 1.1rem;">我們的專利 AURA-BOOST 中底材料，採用微閉孔發泡技術，為您每一步提供強大的地面緩衝和彈力支撐。不論是長途馬拉松，或是辦公室站立，均能完美釋放雙腳重力。</p>
+        <a href="about.html" class="btn btn-primary" id="home-experience-learn-more">探索科技背後</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Dynamic Footer Container -->
+  <footer id="global-footer"></footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Load a few featured products on home page load
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("featured-products-container");
+      if (container && typeof productsData !== "undefined") {
+        // Select one from each category to feature
+        const ids = ["sports_1", "casual_2", "slipper_1", "sandal_1"];
+        const featured = productsData.filter(p => ids.includes(p.id));
+        
+        container.innerHTML = featured.map(product => `
+          <article class="product-card animate-on-scroll">
+            <span class="card-tag">精選推薦</span>
+            <a href="product.html?id=${product.id}" class="card-img-wrapper">
+              <img src="${product.image}" alt="${product.name}" class="card-img">
+            </a>
+            <div class="card-info">
+              <span class="card-cat">${product.categoryName}</span>
+              <a href="product.html?id=${product.id}">
+                <h3 class="card-title">${product.name}</h3>
+              </a>
+              <div class="card-bottom">
+                <div class="card-price"><span>NT$</span>${product.price.toLocaleString()}</div>
+                <button class="card-btn" id="btn-add-${product.id}" aria-label="將 ${product.name} 加入購物袋" onclick="addProductToCart('${product.id}')">
+                  <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="20" width="20">
+                    <path d="M12 5v14M5 12h14"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        `).join("");
+      }
+    });
+  </script>
+</body>
+</html>

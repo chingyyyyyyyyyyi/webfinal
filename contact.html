@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聯絡我們 | AuraStep 極光步履</title>
+  <meta name="description" content="有任何關於 AuraStep 鞋款尺碼選擇、配送進度、退換貨政策或大宗合作疑問？歡迎隨時填寫聯絡表單，或透過客服信箱與熱線與我們取得聯繫。">
+  <meta name="keywords" content="AuraStep聯絡方式, 售後服務, 退換貨諮詢, 客服信箱, 客服熱線">
+  
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Dynamic Header Container -->
+  <header id="global-header"></header>
+
+  <main>
+    <!-- Contact Page Hero -->
+    <section class="about-hero" style="padding: 60px 0 40px 0; background: linear-gradient(180deg, rgba(124, 58, 237, 0.04) 0%, rgba(0,0,0,0) 100%);">
+      <div class="container animate-on-scroll">
+        <span class="section-tag" id="contact-banner-tag">Get In Touch</span>
+        <h1 class="about-title" id="contact-page-title" style="font-size: 2.8rem;">與我們聯繫</h1>
+        <p class="about-desc" style="max-width: 600px;">無論是尺碼諮詢、物流配送、售後服務或是商務大宗採購合作，我們隨時準備為您提供最溫暖與專業的協助。</p>
+      </div>
+    </section>
+
+    <!-- Main Contact Section -->
+    <section class="contact-section" id="contact-content-grid">
+      <div class="container grid grid-2" style="gap: 40px;">
+        
+        <!-- Left: Info Panel -->
+        <div class="contact-info-panel animate-on-scroll" id="info-panel-box">
+          <h2 style="font-size: 1.8rem; margin-bottom: 8px;">聯絡資訊</h2>
+          <p style="color: var(--text-secondary); margin-bottom: 12px;">您可以透過以下方式直接找到我們，或是填寫右側表單：</p>
+          
+          <!-- Tel -->
+          <div class="contact-detail-item">
+            <div class="contact-icon">
+              <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="20" width="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            </div>
+            <div class="contact-text-wrapper">
+              <h4 id="contact-label-phone">客服專線</h4>
+              <p id="contact-value-phone">0800-012-345 (週一至週五 09:00 - 18:00)</p>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="contact-detail-item">
+            <div class="contact-icon">
+              <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="20" width="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </div>
+            <div class="contact-text-wrapper">
+              <h4 id="contact-label-email">電子郵件</h4>
+              <p id="contact-value-email">support@aurastep.com</p>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="contact-detail-item">
+            <div class="contact-icon">
+              <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="20" width="20"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <div class="contact-text-wrapper">
+              <h4 id="contact-label-address">品牌總部</h4>
+              <p id="contact-value-address">台北市信義區信義路五段7號 (台北101大樓 88樓)</p>
+            </div>
+          </div>
+
+          <!-- Map Placeholder -->
+          <div class="map-placeholder" id="contact-map-placeholder">
+            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="40" width="40"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>
+            <span style="font-weight: 600;">台北市信義區信義路五段7號</span>
+            <span style="font-size: 0.8rem; opacity: 0.8;">[ 地圖已載入 | 點擊看導航 ]</span>
+          </div>
+        </div>
+
+        <!-- Right: Message Form -->
+        <div class="contact-form-panel animate-on-scroll" id="form-panel-box">
+          <h2 style="font-size: 1.8rem; margin-bottom: 24px;">線上留言</h2>
+          <form id="contact-form-element" onsubmit="handleContactSubmit(event)">
+            <!-- Name -->
+            <div class="form-group">
+              <label for="contact-name" class="form-label">您的姓名 *</label>
+              <input type="text" id="contact-name" class="form-control" placeholder="請輸入姓名" required>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="contact-email" class="form-label">電子信箱 *</label>
+              <input type="email" id="contact-email" class="form-control" placeholder="example@email.com" required>
+            </div>
+
+            <!-- Subject -->
+            <div class="form-group">
+              <label for="contact-subject" class="form-label">主旨 *</label>
+              <select id="contact-subject" class="form-control" style="appearance: auto;" required>
+                <option value="" disabled selected>請選擇諮詢類別</option>
+                <option value="size">尺碼選擇與版型建議</option>
+                <option value="order">訂單與物流狀態查詢</option>
+                <option value="return">退換貨與售後流程</option>
+                <option value="cooperate">商務洽談與行銷合作</option>
+                <option value="other">其他問題與意見回饋</option>
+              </select>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <label for="contact-message" class="form-label">留言內容 *</label>
+              <textarea id="contact-message" class="form-control" placeholder="請詳細說明您的問題，我們將在 24 小時內儘速回覆。" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="contact-submit-btn" style="width: 100%;">送出訊息</button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Dynamic Footer Container -->
+  <footer id="global-footer"></footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById("contact-name").value;
+      const email = document.getElementById("contact-email").value;
+      const subject = document.getElementById("contact-subject").value;
+      const message = document.getElementById("contact-message").value;
+
+      if (name && email && subject && message) {
+        // Show premium success toast using main.js helper
+        if (typeof showToast === "function") {
+          showToast(`親愛的 ${name}，我們已收到您的諮詢，客服小幫手將於 24 小時內回信！`);
+        } else {
+          alert("留言已送出，我們將儘快聯絡您！");
+        }
+        
+        // Reset form
+        document.getElementById("contact-form-element").reset();
+      }
+    }
+  </script>
+</body>
+</html>
